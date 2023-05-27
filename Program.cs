@@ -1,5 +1,9 @@
+using WebApiProducts_MongoDB.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.Configure<ProductsDatabaseSettings>(
+    builder.Configuration.GetSection("ProductsSettings"));
 // Add services to the container.
 
 builder.Services.AddControllers();
