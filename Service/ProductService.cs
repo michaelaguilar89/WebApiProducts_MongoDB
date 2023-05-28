@@ -36,14 +36,26 @@ namespace WebApiProducts_MongoDB.Service
             await _products.InsertOneAsync(product);
         }
 
-        public async Task EditProduct(string id,Products updateProduct)
+        public async Task<bool> EditProduct(string id,Products updateProduct)
         {
+            if (getById(id) is null)
+            {
+                return false;
+            }
             await _products.ReplaceOneAsync(x => x.Id == id, updateProduct);
+            return true;
         }
 
-        public async Task RemoveProduct(string id)
+        public async Task<bool> RemoveProduct(string id)
         {
+            if (getById(id) is null)
+            {
+                return false;
+            }
             await _products.DeleteOneAsync(x => x.Id == id);
+            return true;
         }
+
+       
     }
 }

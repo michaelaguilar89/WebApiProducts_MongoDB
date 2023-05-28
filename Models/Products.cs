@@ -17,6 +17,6 @@ namespace WebApiProducts_MongoDB.Models
         [Required]
         public string? Description { get; set; }
         [Required]
-        public Object? Urls { get; set; }
+        public string? Urls { get; set; }
     }
 }

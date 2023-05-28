@@ -31,6 +31,7 @@ namespace WebApiProducts_MongoDB.Controllers
 
             }catch (Exception ex) 
             {
+                _response.IsSucces = false;
                 _response.DisplayMessage = "Error";
                 _response.ErrorMessages = new List<string> { ex.ToString() };
                 return BadRequest(_response);
@@ -48,6 +49,75 @@ namespace WebApiProducts_MongoDB.Controllers
             }
             catch (Exception ex)
             {
+                _response.IsSucces = false;
+                _response.DisplayMessage = "Error";
+                _response.ErrorMessages = new List<string> { ex.ToString() };
+                return BadRequest(_response);
+            }
+        }
+       [HttpPut("{id:length(24)}")]
+       public async Task<IActionResult> EditProduct(string id,Products updateProduct)
+        {
+            try
+            {
+               var myresponse= await _product.EditProduct(id, updateProduct);
+                if (myresponse is false)
+                {
+                    _response.DisplayMessage = "Product not found";
+                    return BadRequest(_response);
+                }
+                _response.DisplayMessage = "Update Product";
+                return Ok(_response);
+            }
+            catch (Exception ex)
+            {
+                _response.IsSucces = false;
+                _response.DisplayMessage = "Error";
+                _response.ErrorMessages = new List<string> { ex.ToString() };
+                return BadRequest(_response);
+            }
+        }
+        [HttpDelete("{id:lentgh(24)}")]
+        public async Task<IActionResult> RemoveProduct(string id)
+        {
+            try
+            {
+                var myresponse = await _product.RemoveProduct(id);
+                if (myresponse is false)
+                {
+                    _response.DisplayMessage = "Product not found";
+                    return BadRequest(_response);
+
+                }
+                _response.DisplayMessage = "removed Product";
+                return Ok(_response);
+            }
+            catch (Exception ex)
+            {
+                _response.IsSucces = false;
+                _response.DisplayMessage = "Error";
+                _response.ErrorMessages = new List<string> { ex.ToString() };
+                return BadRequest(_response);
+            }
+        }
+        [HttpGet("{id:length(24)}")]
+        public async Task<IActionResult> GetProductById(string id)
+        {
+            try
+            {
+                var newProduct = await _product.getById(id);
+                if (newProduct is null)
+                {
+                    _response.DisplayMessage="The product not exist!";
+                    return BadRequest(_response);
+                }
+                _response.Result = newProduct;
+                _response.DisplayMessage = "Data of Id : " + id;
+                return Ok(_response);
+            }
+            catch (Exception ex)
+            {
+                _response.IsSucces = false;
                 _response.DisplayMessage = "Error";
                 _response.ErrorMessages = new List<string> { ex.ToString() };
                 return BadRequest(_response);
