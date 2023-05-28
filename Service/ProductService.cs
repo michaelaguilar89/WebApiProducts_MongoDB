@@ -36,7 +36,7 @@ namespace WebApiProducts_MongoDB.Service
             await _products.InsertOneAsync(product);
         }
 
-        public async Task EditProdduct(string id,Products updateProduct)
+        public async Task EditProduct(string id,Products updateProduct)
         {
             await _products.ReplaceOneAsync(x => x.Id == id, updateProduct);
         }

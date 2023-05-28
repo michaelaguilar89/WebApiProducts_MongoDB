@@ -2,9 +2,9 @@
 {
 	public class myResponse
 	{
-		public bool IsSucces { get; set; }
+		public bool IsSucces { get; set; } = true;
 
-		public Object Result { get; set; } = true;
+		public Object Result { get; set; } 
 
 		public string DisplayMessage { get; set; }
 
