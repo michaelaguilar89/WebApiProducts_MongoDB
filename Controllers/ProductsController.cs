@@ -60,6 +60,11 @@ namespace WebApiProducts_MongoDB.Controllers
         {
             try
             {
+                if (id!=updateProduct.Id)
+                {
+                    _response.DisplayMessage = "Product not found,error";
+                    return BadRequest(_response);
+                }
                var myresponse= await _product.EditProduct(id, updateProduct);
                 if (myresponse is false)
                 {
@@ -77,7 +82,7 @@ namespace WebApiProducts_MongoDB.Controllers
                 return BadRequest(_response);
             }
         }
-        [HttpDelete("{id:lentgh(24)}")]
+        [HttpDelete("{id:length(24)}")]
         public async Task<IActionResult> RemoveProduct(string id)
         {
             try

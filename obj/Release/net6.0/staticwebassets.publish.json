@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "qPIWFHPswe7FvmAZ2oolMtNCunMqJHnJu5f4PxcdhOs=",
+  "Source": "WebApiProducts_MongoDB",
+  "BasePath": "_content/WebApiProducts_MongoDB",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
