@@ -55,17 +55,12 @@ namespace WebApiProducts_MongoDB.Controllers
                 return BadRequest(_response);
             }
         }
-       [HttpPut("{id:length(24)}")]
-       public async Task<IActionResult> EditProduct(string id,Products updateProduct)
+       [HttpPut]
+       public async Task<IActionResult> EditProduct(Products updateProduct)
         {
             try
             {
-                if (id!=updateProduct.Id)
-                {
-                    _response.DisplayMessage = "Product not found,error";
-                    return BadRequest(_response);
-                }
-               var myresponse= await _product.EditProduct(id, updateProduct);
+               var myresponse= await _product.EditProduct(updateProduct.Id, updateProduct);
                 if (myresponse is false)
                 {
                     _response.DisplayMessage = "Product not found";
